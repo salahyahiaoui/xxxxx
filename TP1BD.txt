@@ -1,0 +1,60 @@
+1. \c
+create database DEPARTEMENT \p;
+use DEPARTEMENT \p;
+2. \c
+create table ETUDIANT (MATRICULE int, NOM varchar(20), PRENOM varchar(20) ,ANNEE_ETUDE varchar(5),NOTE real) \p;
+3. \c 
+describe ETUDIANT \p;
+4. \c 
+rename table ETUDIANT to ETUDIANT2 \p;
+5. \c 
+alter table ETUDIANT2 change NOTE NOTE_EMD real \p;
+6. \c 
+alter table ETUDIANT2 drop NOTE_EMD \p;
+7. \c
+alter table ETUDIANT2 add DATE_NAISSANCE date \p;
+8. \c
+alter table ETUDIANT2 modify NOM varchar(30) \p;
+9. \c 
+insert into ETUDIANT2 values (3656,'HAMMADI','ALI','2eme','1999-03-30'),
+                             (1656,'LEMLEM','DOUNIA','3eme','2000-04-02'),
+                             (3612,'MAAMRI','AYOUB','1ere', '2002-11-13'),
+                             (3489,'ARIF','AYA','2eme','2001-06-21'),
+                             (3089,'BACHA','OUSSAMA','2eme','1999-03-30'),
+                             (3777,'ZITOUNI','RIDA','3eme','2000-05-12'),
+                             (3745,'KHEDIMOU','ANFAL','3eme','1999-03-30'),
+                             (6223,'ABBASSI','MOHAMMED','2eme','2001-07-01') \p;
+10. \c
+select * from ETUDIANT2 \p;
+11. \c
+select NOM,PRENOM from ETUDIANT2 \p;
+12. \c
+select NOM,PRENOM from ETUDIANT2 where ANNEE_ETUDE='2eme' \p; 
+13. \c
+select NOM,PRENOM from ETUDIANT2 where NOM like 'a%' \p;
+14. \c
+SELECT *,(year(current_date)-year(DATE_NAISSANCE)) AS Age from ETUDIANT2 \p;
+15. \c
+select *,(year(current_date)-year(DATE_NAISSANCE)) AS Age from ETUDIANT2 order by age desc\p; 
+16. \c
+select * from etudiant2 where DATE_NAISSANCE =(select DATE_NAISSANCE from etudiant2 where prenom='Ali')\p;
+17. \c
+select count(*) as NbrEtud from etudiant2 \p;
+18. \c
+select count(*) as NbrEtud2 from etudiant2 where ANNEE_ETUDE='2eme' \p;
+19. \c
+select ANNEE_ETUDE,count(nom) as NbrEtud from etudiant2 group by ANNEE_ETUDE \p;
+20. \c
+update etudiant2 set DATE_NAISSANCE='2001-05-10' where nom='abbassi' and PRENOM='mohammed' \p;
+select * from etudiant2;
+21. \c
+delete from etudiant2 where DATE_NAISSANCE<'2001-01-01' \p;
+select * from etudiant2 \p;
+22. \c
+delete from etudiant2 \p;
+select * from etudiant2 \p;
+23. \c
+drop table etudiant2 \p;
+show tables \p;
+24. \c
+drop database DEPARTEMENT \p;
